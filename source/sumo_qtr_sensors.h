@@ -26,7 +26,7 @@ extern QTRSensorsAnalog qtr_sensors;
 extern int sensor_values[];
 extern bool sensor_detection[];
 
-#define LINE_INVALID -1
+#define NO_LINE -1
 #define LINE_F_LEFT   0
 #define LINE_F_RIGHT  1
 #define LINE_B_LEFT   2

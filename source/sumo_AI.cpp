@@ -1,5 +1,59 @@
 #include "sumo_AI.h"
 
+int ping_distance_cm = 0;
+int servo_angle = 90;
+int line_situation = NO_LINE;
+
+class ServoThread: public Thread
+{
+  void run()
+  {
+    while(true)
+    {
+      sweepServo();
+    }
+  }
+};
+
+class PingThread: public Thread
+{
+  void run()
+  {
+    int temp_ping_distance = 0;
+    
+    while(true)
+    {
+      temp_ping_distance = ping();
+      
+      if(temp_ping_distance > MIN_VALID_PING_DISTANCE_CM && temp_ping_distance <= MAX_VALID_PING_DISTANCE_CM)
+      {
+        ping_distance_cm = temp_ping_distance;
+      
+        if(servo_angle == SERVO_MID_ANGLE)
+        {
+          servo_angle = getServoPos();
+        }
+      }
+    }
+  }
+};
+
+class QTRThread: public Thread
+{
+  void run()
+  {
+    while(true)
+    {
+      line_situation = readQTRSensors();
+    }
+  }
+};
+
+ThreadController thread_controller;
+PingThread ping_thread;
+ServoThread servo_thread;
+QTRThread qtr_thread;
+
 void start()
 {
   /*This is all the code you need in order to understand how to control 
@@ -10,18 +64,15 @@ void start()
 //  testServo();
 //  testQTRSensors();
 //  testMotors();  
+
+  startSensorThreads();
     
   while(true)
   {
-    sense();
-    plan();
-    act();
-  }
-}
 
-void sense()
-{
-      //Put your AMAZING AI-code here!
+//    plan();
+//    act();
+  }
 }
 
 void plan()
@@ -32,6 +83,32 @@ void plan()
 void act()
 {
       //Put your AMAZING AI-code here!
+}
+
+void startSensorThreads()
+{
+  ping_thread = PingThread();
+  servo_thread = ServoThread();
+  qtr_thread = QTRThread();
+
+  ping_thread.setInterval(50);
+  servo_thread.setInterval(50);
+  qtr_thread.setInterval(50);
+  
+  thread_controller = ThreadController();
+  
+  thread_controller.add(&ping_thread);
+  thread_controller.add(&servo_thread);
+  thread_controller.add(&qtr_thread);
+
+  Timer1.initialize(20000);
+  Timer1.attachInterrupt(timerCallback);
+  Timer1.start();
+}
+
+void timerCallback()
+{
+  thread_controller.run();
 }
 
 void testPing()
@@ -99,7 +176,7 @@ void testQTRSensors()
     case LINE_BACK: 
     Serial.println("Line detected at rear!");
     break;
-    case LINE_INVALID:
+    case NO_LINE:
     default:
     Serial.println("No line detected.");
     break;

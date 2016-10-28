@@ -14,7 +14,7 @@ QTRSensorsAnalog qtr_sensors(
   
 int readQTRSensors()
 {
-  int senario = LINE_INVALID;
+  int senario = NO_LINE;
   int sensor_index = 0;
   
   qtr_sensors.read(sensor_values);
@@ -63,7 +63,7 @@ int getSenario()
   }
   else
   {
-    return LINE_INVALID;
+    return NO_LINE;
   }
 }
 
