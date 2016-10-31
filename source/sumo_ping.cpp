@@ -5,16 +5,34 @@ long waitForBounce();
 
 int ping()
 {
-  long duration_in_microsec = 0;
+  int distance;
+unsigned long pulseduration=0;
 
-  sendSoundWave();
-  duration_in_microsec = waitForBounce();
-  return roundOfDistance(convertMicrosecToCm(duration_in_microsec));
+  // set pin as output so we can send a pulse
+ pinMode(7, OUTPUT);
+// set output to LOW
+ digitalWrite(7, LOW);
+ delayMicroseconds(5);
+ 
+ // now send the 5uS pulse out to activate Ping)))
+ digitalWrite(7, HIGH);
+ delayMicroseconds(5);
+ digitalWrite(7, LOW);
+ 
+ // now we need to change the digital pin
+ // to input to read the incoming pulse
+ pinMode(7, INPUT);
+ 
+ // finally, measure the length of the incoming pulse
+ pulseduration=pulseIn(7, HIGH);
+
+  return roundOfDistance(convertMicrosecToCm(pulseduration/2));
 }
 
 long convertMicrosecToCm(long microseconds)
 {
-  return microseconds/MICROSECONDS_PER_CM/2;
+
+  return microseconds/MICROSECONDS_PER_CM;
 }
 
 int roundOfDistance(long cm)

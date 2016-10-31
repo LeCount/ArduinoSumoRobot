@@ -1,9 +1,6 @@
-#include <TimerOne.h>
-
 #ifndef SUMO_AI_H
 #define SUMO_AI_H
 
-#include <StaticThreadController.h>
 #include <ThreadController.h>
 #include <Thread.h>
 #include "sumo_servo.h"
@@ -16,7 +13,7 @@ extern int ping_angle_degrees;
 extern int line_situation;
 
 /*This is the main loop for the sumo robot AI.*/
-void start();
+void start_sumo();
 
 /*Start threads that (1): Sweeps the servo back and forth
  *                   (2): Reads the ping sensor
