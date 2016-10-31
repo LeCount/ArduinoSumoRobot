@@ -1,16 +1,30 @@
 #ifndef SUMO_AI_H
 #define SUMO_AI_H
 
-#include <ThreadController.h>
-#include <Thread.h>
+//#include <QueueList.h>
 #include "sumo_servo.h"
 #include "sumo_ping.h"
 #include "sumo_qtr_sensors.h"
 #include "sumo_motor_driver.h"
 
-extern int ping_distance_cm;
-extern int ping_angle_degrees;
-extern int line_situation;
+class SumoAction
+{
+  public:
+    int type;
+    int iterations;
+
+    SumoAction()
+    {
+      type = 0;
+      iterations = 0;
+    }
+
+    SumoAction(int t, int i)
+    {
+      type = t;
+      iterations = i;
+    }
+};
 
 /*This is the main loop for the sumo robot AI.*/
 void start_sumo();

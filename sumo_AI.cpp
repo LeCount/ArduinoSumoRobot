@@ -1,85 +1,39 @@
 #include "sumo_AI.h"
 
-int ping_distance_cm = 0;
-int servo_angle = 90;
-int line_situation = NO_LINE;
+/*A queue that will contain the states actions that the robot will execute next.*/
+//QueueList <SumoAction> next_action;
 
-ThreadController thread_controller;
-//PingThread ping_thread;
-//ServoThread servo_thread;
-//QTRThread qtr_thread;
-// ThreadController that will controll all threads
-ThreadController controll = ThreadController();
+/*This variable sets the servo to rotate left or right.*/
+int servo_direction = 0;
 
-//My Thread (as a pointer)
-Thread* myThread = new Thread();
-Thread* myThread2 = new Thread();
-Thread* myThread3 = new Thread();
-Thread* myThread4 = new Thread();
-//His Thread (not pointer)
-Thread hisThread = Thread();
+/*This variable is set if ping-sesor detects an object.*/
+bool ping_state = false;
 
-// callback for myThread
-void sweep(){
-  sweepServo();
-}
-void driveF(){
-  moveForward();
-}
-
-
-void driveB(){
-  moveBackward();
-}
+/*This variable contains the current state of the qtr-line-sensors.*/
+int qtr_state = NO_LINE;
 
 void start_sumo()
 {
-  // Configure myThread
-  myThread->onRun(sweep);
-  myThread->setInterval(1);
-
-    myThread2->onRun(driveF);
-  myThread2->setInterval(1);
-
-    myThread3->onRun(driveB);
-  myThread3->setInterval(1);
-
-  // Adds both threads to the controller
-  controll.add(myThread);
-  controll.add(myThread2);
-  controll.add(myThread3);
   
   while(true)
   {
-   controll.run();
+    testQTRSensors();
   }
+}
+
+void sense()
+{
+  
 }
 
 void plan()
 {
-      //Put your AMAZING AI-code here!
+
 }
 
 void act()
 {
-      //Put your AMAZING AI-code here!
-}
 
-void startSensorThreads()
-{
-  //ping_thread = PingThread();
-  //servo_thread = ServoThread();
-  //qtr_thread = QTRThread();
-
-  //ping_thread.setInterval(50);
-  //servo_thread.setInterval(1000);
-  //qtr_thread.setInterval(50);
-  
-  thread_controller = ThreadController();
-  
-  //thread_controller.add(&ping_thread);
-  //thread_controller.add(&servo_thread);
-  //thread_controller.add(&qtr_thread);
 }
 
 void testPing()
@@ -98,7 +52,7 @@ void testPing()
 
 void testServo()
 {
-  /*
+  
   Serial.println("Testing servo...");
   
   int servo_position1 = getServoPos();
@@ -122,10 +76,10 @@ void testServo()
   Serial.println(servo_position2); 
 
   Serial.println("Sweeping servo...");   
-  */ 
+  
   sweepServo();
 
- // Serial.println(); 
+  Serial.println(); 
 
 }
 

@@ -16,10 +16,10 @@
 
 #define QTR_COLOR_LIMIT_VAL           1000    //Number indicating the breakingpoint between dark and light colors
 
-#define QTR_FRONT_LEFT_PIN            1       //Signal-pin to be used for sensor
+#define QTR_FRONT_LEFT_PIN            2       //Signal-pin to be used for sensor
 #define QTR_FRONT_RIGHT_PIN           3       //Signal-pin to be used for sensor
-#define QTR_BACK_LEFT_PIN             4       //Signal-pin to be used for sensor
-#define QTR_BACK_RIGHT_PIN            5       //Signal-pin to be used for sensor
+#define QTR_BACK_LEFT_PIN             0       //Signal-pin to be used for sensor
+#define QTR_BACK_RIGHT_PIN            1       //Signal-pin to be used for sensor
 
 #define NUM_OF_QTR_SENSORS            4       // Number of sensors to be used
 #define QTR_TIMEOUT_MICROSEC          2000    // waits for 2000 us for qtr-sensor outputs to go low
