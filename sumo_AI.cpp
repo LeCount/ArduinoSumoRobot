@@ -13,11 +13,10 @@ bool ping_state = false;
 int qtr_state = NO_LINE;
 
 void start_sumo()
-{
-  
+{ 
   while(true)
   {
-    testQTRSensors();
+    testMotors();
   }
 }
 
@@ -84,9 +83,7 @@ void testServo()
 }
 
 void testQTRSensors()
-{
-  Serial.println("Testing QTR-sensors...");
-  
+{ 
   int result = readQTRSensors();
     
   switch(result)
@@ -110,14 +107,13 @@ void testQTRSensors()
     Serial.println("Line detected at rear!");
     break;
     case NO_LINE:
+    Serial.println("No line detected.");
+    break;
     default:
     Serial.println("No line detected.");
     break;
   }
-
-  Serial.println();
-
-  delay(1000);
+  delay(500);
 }
 
 void testMotors()

@@ -11,16 +11,27 @@ QTRSensorsAnalog qtr_sensors(
   NUM_OF_QTR_SENSORS, 
   QTR_TIMEOUT_MICROSEC, 
   QTR_EMITTER_PIN); 
-  
+
 int readQTRSensors()
 {
   int senario = NO_LINE;
   int sensor_index = 0;
   
   qtr_sensors.read(sensor_values);
-  
-  for(sensor_index = 0; sensor_index < NUM_OF_QTR_SENSORS; sensor_index =+ 1)
+
+  for(sensor_index = 0; sensor_index < NUM_OF_QTR_SENSORS; sensor_index += 1)
   {
+    if(sensor_index == 0)
+      Serial.print("FL: ");
+    else if(sensor_index == 1)
+      Serial.print("FR: "); 
+    else if(sensor_index == 2)
+      Serial.print("BL: ");
+    else 
+      Serial.print("BR: ");
+      
+    Serial.println(sensor_values[sensor_index]);
+    
     if(sensor_values[sensor_index] > 0 && sensor_values[sensor_index] <= QTR_COLOR_LIMIT_VAL)
     {
       sensor_detection[sensor_index] = true;
@@ -30,7 +41,6 @@ int readQTRSensors()
       sensor_detection[sensor_index] = false;
     }
   }
-
   senario = getSenario();
   return senario;
 }
