@@ -44,17 +44,6 @@ void rotateLeft()
 {
   stopMotors();
   
-  analogWrite(MOTOR1_A_PIN, 0);
-  analogWrite(MOTOR1_B_PIN, MAX_MOTOR_SPEED);
-  
-  analogWrite(MOTOR2_A_PIN, 0);
-  analogWrite(MOTOR2_B_PIN, MAX_MOTOR_SPEED);
-}
-
-void rotateRight()
-{
-  stopMotors();
-  
   analogWrite(MOTOR1_A_PIN, MAX_MOTOR_SPEED);
   analogWrite(MOTOR1_B_PIN, 0);
   
@@ -62,14 +51,25 @@ void rotateRight()
   analogWrite(MOTOR2_B_PIN, 0);
 }
 
+void rotateRight()
+{
+  stopMotors();
+  
+  analogWrite(MOTOR1_A_PIN, 0);
+  analogWrite(MOTOR1_B_PIN, MAX_MOTOR_SPEED);
+  
+  analogWrite(MOTOR2_A_PIN, 0);
+  analogWrite(MOTOR2_B_PIN, MAX_MOTOR_SPEED);
+}
+
 void turnLeftForward()
 {
   stopMotors();
   
   analogWrite(MOTOR1_A_PIN, 0);
-  analogWrite(MOTOR1_B_PIN, 0);
+  analogWrite(MOTOR1_B_PIN, MAX_MOTOR_SPEED);
   
-  analogWrite(MOTOR2_A_PIN, MAX_MOTOR_SPEED);
+  analogWrite(MOTOR2_A_PIN, 0);
   analogWrite(MOTOR2_B_PIN, 0);
 }
 
@@ -78,24 +78,14 @@ void turnRightForward()
   stopMotors();
   
   analogWrite(MOTOR1_A_PIN, 0);
-  analogWrite(MOTOR1_B_PIN, MAX_MOTOR_SPEED);
+  analogWrite(MOTOR1_B_PIN, 0);
   
-  analogWrite(MOTOR2_A_PIN, 0);
+  analogWrite(MOTOR2_A_PIN, MAX_MOTOR_SPEED);
   analogWrite(MOTOR2_B_PIN, 0);
+  
 }
 
 void turnLeftBackward()
-{
-  stopMotors();
-  
-  analogWrite(MOTOR1_A_PIN, 0);
-  analogWrite(MOTOR1_B_PIN, 0);
-  
-  analogWrite(MOTOR2_A_PIN, 0);
-  analogWrite(MOTOR2_B_PIN, MAX_MOTOR_SPEED);
-}
-
-void turnRightBackward()
 {
   stopMotors();
   
@@ -104,5 +94,17 @@ void turnRightBackward()
   
   analogWrite(MOTOR2_A_PIN, 0);
   analogWrite(MOTOR2_B_PIN, 0);
+}
+
+void turnRightBackward()
+{
+  stopMotors();
+  
+  analogWrite(MOTOR1_A_PIN, 0);
+  analogWrite(MOTOR1_B_PIN, 0);
+  
+  analogWrite(MOTOR2_A_PIN, 0);
+  analogWrite(MOTOR2_B_PIN, MAX_MOTOR_SPEED);
+  
 }
 

@@ -23,26 +23,25 @@
 #include <Arduino.h>
 #include "sumo_config.h"
 
-#define MAX_MOTOR_SPEED                   255
-#define STOP_MOVING                       0
-#define MOVE_FORWARD                      1
-#define MOVE_BACKWARD                     2
-#define ROTATE_LEFT_AROUND_C              3         
-#define ROTATE_RIGHT_AROUND_C             4
-#define ROTATE_LEFT_AROUND_L_FORWARD      5
-#define ROTATE_RIGHT_AROUND_R_RFORWARD    6
-#define ROTATE_LEFT_AROUND_L_BACKWARD     7
-#define ROTATE_RIGHT_AROUND_R_BACKWARD    8
-
+/*Set the pin-configuration for the motor controller.*/
 void configure_motors();
+
 void stopMotors();
+
 void moveForward();
+
 void moveBackward();
+
 void rotateLeft();
+
 void rotateRight();
+
 void turnLeftForward();
+
 void turnRightForward();
+
 void turnLeftBackward();
+
 void turnRightBackward();
 
 #endif

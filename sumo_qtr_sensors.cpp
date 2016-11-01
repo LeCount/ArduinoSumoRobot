@@ -1,10 +1,7 @@
 #include "sumo_qtr_sensors.h"
 
-/*Global QTR-reflectance-sensor variables. Variable are defined here. */
 int sensor_values[NUM_OF_QTR_SENSORS];
 bool sensor_detection[NUM_OF_QTR_SENSORS];
-
-int getSenario();
 
 QTRSensorsAnalog qtr_sensors(
   (unsigned char[]) {QTR_FRONT_LEFT_PIN, QTR_FRONT_RIGHT_PIN, QTR_BACK_LEFT_PIN, QTR_BACK_RIGHT_PIN}, 
@@ -14,24 +11,12 @@ QTRSensorsAnalog qtr_sensors(
 
 int readQTRSensors()
 {
-  int senario = NO_LINE;
   int sensor_index = 0;
   
   qtr_sensors.read(sensor_values);
 
   for(sensor_index = 0; sensor_index < NUM_OF_QTR_SENSORS; sensor_index += 1)
-  {
-    if(sensor_index == 0)
-      Serial.print("FL: ");
-    else if(sensor_index == 1)
-      Serial.print("FR: "); 
-    else if(sensor_index == 2)
-      Serial.print("BL: ");
-    else 
-      Serial.print("BR: ");
-      
-    Serial.println(sensor_values[sensor_index]);
-    
+  {   
     if(sensor_values[sensor_index] > 0 && sensor_values[sensor_index] <= QTR_COLOR_LIMIT_VAL)
     {
       sensor_detection[sensor_index] = true;
@@ -41,8 +26,8 @@ int readQTRSensors()
       sensor_detection[sensor_index] = false;
     }
   }
-  senario = getSenario();
-  return senario;
+
+  return getSenario();
 }
 
 int getSenario()

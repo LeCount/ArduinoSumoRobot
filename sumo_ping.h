@@ -10,6 +10,12 @@
 /*Perform one PING-measurment, and return the distance to the object in whole cm's.*/
 int ping();
 
+/*Send out the soundwave.*/
+void sendSoundWave();
+
+/*Register the time it took for the soundwave to return (bounce).*/
+unsigned long waitForBounce();
+
 /*Based on the speed of sound, converts the "there-and-back-again-duration" 
  *into a cm-based distance (long).*/
 long convertMicrosecToCm(long microseconds);

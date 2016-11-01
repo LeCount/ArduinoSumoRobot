@@ -1,7 +1,8 @@
 #include "sumo_servo.h"
 #include "sumo_ping.h"
-/*Global servo variables. Variable are defined here.*/
+
 int servo_pos = SERVO_MID_ANGLE;
+int servo_direction = 1;
 Servo servo;
 
 void setServoPos(int new_pos)
@@ -16,32 +17,37 @@ void setServoPos(int new_pos)
   delay(100);
 }
 
-int getServoPos()
-{
-  return servo_pos;
-}
+int getServoPos(){return servo_pos;}
 
-void sweepServo(int dir)
+void tickServo()
 {
-
+  int next_servo_angle = 0;
+  
   if(!servo.attached())
   {
     servo.attach(SERVO_PIN); 
     setServoPos(SERVO_MID_ANGLE);  
+    delay(100);
   }
 
-  servo_pos = servo_pos + (SERVO_STEP_DEGREE * dir);
+  next_servo_angle = servo_pos + (SERVO_STEP_DEGREE * servo_direction);
 
-  if((servo_pos + SERVO_STEP_DEGREE) > SERVO_PRACTICAL_MAX_ANGLE && dir == 1)
+  if(next_servo_angle > SERVO_PRACTICAL_MAX_ANGLE && servo_direction == 1)
   {
-    
+    Serial.println("Servo dir = 1");
+    servo_direction = -1;
+    servo_pos = servo_pos - SERVO_STEP_DEGREE;
   }
-  else if((servo_pos - SERVO_STEP_DEGREE) < SERVO_MIN_ANGLE && dir == -1)
+  else if(next_servo_angle < SERVO_MIN_ANGLE && servo_direction == -1)
   {
-    
+    Serial.println("Servo dir = -1");
+    servo_direction = 1;
+    servo_pos = servo_pos + SERVO_STEP_DEGREE;
   }
   else
   {
-    servo.write(servo_pos);
+    servo_pos = next_servo_angle;
   }
+
+  servo.write(servo_pos);
 }

@@ -21,11 +21,6 @@
 * Weight without header pins: 0.008 oz (0.2 g)
 */
 
-/*Global QTR-reflectance-sensor variables. Variables are only declared here!*/
-extern QTRSensorsAnalog qtr_sensors; 
-extern int sensor_values[];
-extern bool sensor_detection[];
-
 #define NO_LINE -1
 #define LINE_F_LEFT   0
 #define LINE_F_RIGHT  1
@@ -34,8 +29,11 @@ extern bool sensor_detection[];
 #define LINE_FRONT    4
 #define LINE_BACK     5
 
+/*Read all qtr-line-sensors.*/
+int readQTRSensors();
+
 /*Depending on the current situation, this function returns 
  *an int, corresponding to one of the defined values above.*/
-int readQTRSensors();
+int getSenario();
 
 #endif
