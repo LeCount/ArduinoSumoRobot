@@ -6,9 +6,15 @@
         http://www.micropik.com/PDF/SG90Servo.pdf
 */
 
+/*Power consumption: 550 mA.*/
+
 #include <Arduino.h>
 #include "sumo_config.h"
 #include <Servo.h>
+
+extern Servo servo;
+
+void configureServo();
 
 /*Returns the current position of the servo.*/
 int  getServoPos();
@@ -16,7 +22,7 @@ int  getServoPos();
 /*Set the position of the servo in degrees.*/
 void setServoPos(int new_pos);
 
-/*Sweep (tick/step) servo right or left once, within the specified maximum servo angle.*/
+/*Move the servo, in the current direction, one tick (specified in config.h).*/
 void tickServo();
 
 #endif

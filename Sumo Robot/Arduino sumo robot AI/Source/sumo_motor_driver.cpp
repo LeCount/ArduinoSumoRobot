@@ -1,6 +1,6 @@
 #include "sumo_motor_driver.h"
 
-void configure_motors() 
+void configureMotors() 
 {
   pinMode(MOTOR1_A_PIN, OUTPUT);
   pinMode(MOTOR1_B_PIN, OUTPUT);
@@ -15,13 +15,11 @@ void stopMotors()
   
   analogWrite(MOTOR2_A_PIN, 0);
   analogWrite(MOTOR2_B_PIN, 0);
-  delay(50);
+  delay(10);
 }
 
 void moveForward()
-{
-  stopMotors();
-  
+{ 
   analogWrite(MOTOR1_A_PIN, 0);
   analogWrite(MOTOR1_B_PIN, MAX_MOTOR_SPEED);
   
@@ -105,6 +103,4 @@ void turnRightBackward()
   
   analogWrite(MOTOR2_A_PIN, 0);
   analogWrite(MOTOR2_B_PIN, MAX_MOTOR_SPEED);
-  
 }
-

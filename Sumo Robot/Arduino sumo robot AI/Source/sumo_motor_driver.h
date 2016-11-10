@@ -20,11 +20,13 @@
  * A-IB: Motor B Input B
 */
 
+/*Power consumption per motor: (MIN 120 mA) (MAX 1600mA STALL) */
+
 #include <Arduino.h>
 #include "sumo_config.h"
 
 /*Set the pin-configuration for the motor controller.*/
-void configure_motors();
+void configureMotors();
 
 void stopMotors();
 
