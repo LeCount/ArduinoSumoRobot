@@ -1,0 +1,7 @@
+(1) Electronics for 2 pcs of robots (ebay): 		1000 SEK
+(2) Cost for printing the parts: 			ignored (sponsored by developer)
+(3) 12 batteries for 2 robots (not rechargeable)		60 SEK					
+(4) Other costs:					250  SEK
+
+(4) Depending on what resources you have, the "Other cost"-column might change.
+This topic covers resources such as soldering, glue, cables, sheet-metal-part, screws, etc...

@@ -1,0 +1,10 @@
+6 pcs AAA-batter
+1 pcs Circuit switch
+1 pcs 5V LED (with current limiting resistor)
+1 pcs Custom PCB-board
+Wires with connectors
+Pin Header Connectors 
+Power glue
+Heat glue
+Sheet of metall (for the plow)
+Screws

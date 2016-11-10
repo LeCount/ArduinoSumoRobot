@@ -1,0 +1,2 @@
+Put rubber texture on the weels for better grip and response to actions.
+Connect input-pins to pull-up/down resistors for better signal handling.
